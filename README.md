@@ -1,4 +1,4 @@
-# Assignment 5: Unsupervised Machine Learning
+# Text Classification using Deep Learning
 
 [Description](#description) | [Methods](#methods) | [Repository Structure](#repository-structure) | [Usage](#usage) | [Results and Disucssion](#results-and-discussion) | [Contact](#contact)
 
