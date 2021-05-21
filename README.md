@@ -233,3 +233,5 @@ Logistic Regression             | Retrained Embeddings
 
 Overall, it seems like this data may have been too complex to classify using word embeddings. Other approaches, e.g. using NER may be more useful to classify seasons, as they may be a simpler indicator of which season lines belong to. 
 
+## Contact
+If you have any questions, feel free to contact me at 201805351@post.au.dk. 
