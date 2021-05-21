@@ -1,0 +1,10 @@
+venv_cnn/
+
+data/glove/glove.6B.100d.txt
+data/glove/glove.6B.200d.txt
+data/glove/glove.6B.300d.txt
+data/glove/glove.6B.50d.txt
+data/glove/glove.6B.zip
+
+src/cnn_testing.ipynb
+src/embeddings.ipynb

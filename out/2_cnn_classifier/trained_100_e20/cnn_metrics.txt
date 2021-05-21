@@ -1,0 +1,15 @@
+Classification report for model trained on ../out/0_preprocessing/GoT_preprocessed_10.csv:
+              precision    recall  f1-score   support
+
+    Season 1       0.54      0.50      0.52       159
+    Season 2       0.34      0.44      0.38       193
+    Season 3       0.24      0.13      0.17       164
+    Season 4       0.29      0.35      0.32       188
+    Season 5       0.23      0.30      0.26       125
+    Season 6       0.26      0.32      0.29       115
+    Season 7       0.57      0.40      0.47       107
+    Season 8       0.34      0.17      0.23        64
+
+    accuracy                           0.34      1115
+   macro avg       0.35      0.33      0.33      1115
+weighted avg       0.35      0.34      0.34      1115
