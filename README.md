@@ -37,7 +37,7 @@ The CNN had the following layer structure:
 - Drop out layer of 0.02
 - Output, classification layer
 
-The drop out layers and regularisation methods were used, to reduce overfitting of the model on the training data. For more details see also the [model visualisation](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100/cnn_model.png) and [model summary](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100/cnn_summary.txt). The model was once trained using the pre-trained word embeddings, and once allowing the pre-trained word embeddings to be updated with the input data (i.e. trainble). In both cases, the model was trained for 20 epochs using a batch size of 20. 
+The drop out layers and regularisation methods were used, to reduce overfitting of the model on the training data. For more details see also the [model visualisation](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_model.png) and [model summary](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_summary.txt). The model was once trained using the pre-trained word embeddings, and once allowing the pre-trained word embeddings to be updated with the input data (i.e. trainble). In both cases, the model was trained for 20 epochs using a batch size of 20. 
 
 ## Repository Structure 
 ```
@@ -52,13 +52,13 @@ The drop out layers and regularisation methods were used, to reduce overfitting 
         |-- lr_metrics.txt              
         |-- lr_matrix.png               
     |-- 2_cnn_classifier/               # Directory for output of script 2_cnn_classifier.py
-        |-- pretrained_100/             # Directory for output of CNN with pretrained embeddings of size 100
+        |-- pretrained_100_e20/         # Directory for output of CNN with pretrained embeddings of size 100
             |-- cnn_summary.txt
             |-- cnn_model.png
             |-- cnn_history.png
             |-- cnn_metrics.txt
             |-- cnn_matrix.png
-        |-- trained_100/                # Directory for output of CNN with re-trained embedddings of 100
+        |-- trained_100_e20/            # Directory for output of CNN with re-trained embedddings of 100
             |-- ...
 
 |-- src/                                # Directory containing main scripts of the project
@@ -187,7 +187,7 @@ __Parameters:__
 - `-e, --epochs:` *int, default:* `20`\
   Number of epochs to train the model.
   
-- `-b, --batch_size`: *int, default:* `20`\ 
+- `-b, --batch_size`: *int, default:* `20`\
   Size of batches to train model on.
   
 - `-ed, --embedding_dim`: *int, default:* `100`\
@@ -215,20 +215,20 @@ __Output__ saved in `out/2_cnn_classifier/{output_name}`:
 
 
 ## Results and Discussion 
-All results can be found in the `out/` directory of this repository. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_metrics.txt) of the logistic regression classifier indicates, that the model achieved a weighted F1 score of 0.33. Classification reports ([pretrained embeddings](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100/cnn_metrics.txt), [retrained embeddings](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100/cnn_metrics.txt)) of the CNNs indicate, that the model using pre-trained embeddings, achieved a weighted F1 score of 0.33, while the model in which embedding weights were re-trained achieved a weighted F1 score of 0.34. Thus, only considering the F1 score, the CNN could not really outperform the base line, logistic regression classifier. 
+All results can be found in the `out/` directory of this repository. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_metrics.txt) of the logistic regression classifier indicates, that the model achieved a weighted F1 score of 0.33. Classification reports ([pretrained embeddings](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_metrics.txt), [retrained embeddings](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100_e20/cnn_metrics.txt)) of the CNNs indicate, that the model using pre-trained embeddings, achieved a weighted F1 score of 0.33, while the model in which embedding weights were re-trained achieved a weighted F1 score of 0.34. Thus, only considering the F1 score, the CNN could not really outperform the base line, logistic regression classifier. 
 
 The model histories of the CNNs indicate, that despite regularisation and drop-out layers the model started overfitting at around epoch 10. This is indicated by the fact that the validation loss is diverging, meaning it increases, while the training loss continues to decrease. 
 
 Pretrained Embeddings             | Retrained Embeddings
 :-------------------------:|:-------------------------:
-![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100/cnn_history.png)  |  ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100/cnn_history.png))
+![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_history.png)  |  ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100_e20/cnn_history.png)
 
 
 The confusion matricies can be provide more detailed information into which seasons where mixed up or more difficult to classifiy. Both the logistic regression classifier and the CNNs performed best at classifying season 1, season 2 and season 7. However, there may be other reasons, e.g. disbalanced data for these results. 
 
 Logistic Regression             | Retrained Embeddings
 :-------------------------:|:-------------------------:
-![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_matrix.png)  |  ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100/cnn_matrix.png))
+![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_matrix.png)  |  ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100_e20/cnn_matrix.png)
 
 
 Overall, it seems like this data may have been too complex to classify using word embeddings. Other approaches, e.g. using NER may be more useful to classify seasons, as they may be a simpler indicator of which season lines belong to. 
