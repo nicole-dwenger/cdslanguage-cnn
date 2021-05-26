@@ -198,7 +198,7 @@ Logistic Regression             | Retrained Embeddings
 
 Looking closer at the training history of CNN, it can be seen that despite regularisation and drop-out layers the model started overfitting at around epoch 10. This is indicated by the fact that the validation loss is diverging, meaning it increases, while the training loss continues to decrease. 
 
-<img src="https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png" width="200">
+<img src="https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png" width="350">
 
 Overall, it seems like this data may have been too complex to classify using word embeddings. Other approaches, e.g. using NER may be more useful to classify seasons, as they may be a simpler indicator of which season lines belong to. 
 
