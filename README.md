@@ -1,4 +1,4 @@
-# Classifying Games of Thrones Lines using Deep Learning
+# Classifying Game of Thrones Lines using Deep Learning
 
 [Description](#description) | [Methods](#methods) | [Repository Structure](#repository-structure) | [Usage](#usage) | [Results and Disucssion](#results-and-discussion) | [Contact](#contact)
 
@@ -15,6 +15,7 @@ For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thro
 1. Rows in which the text was not a true line, but contained the word SEASON,  EPISODE or CREDITS were removed. 
 2. The lines in the data frame still consisted of multiple sentences. Thus, all lines were split into single sentences, while keeping the information about the season. 
 4. The single sentences were chunked into chunks of 10 sentences and stored together with their season in a data frame with columns for season and text.
+
 For both models, the data was split into training and test data using a 75/25 split. 
 
 ### Count Vectorisazion and Logistic Regression
