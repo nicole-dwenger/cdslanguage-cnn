@@ -192,13 +192,15 @@ All results can be found in the `out/` directory of this repository. The [classi
 
 The confusion matricies can be provide more detailed information into which seasons where mixed up or more difficult to classifiy. Both the logistic regression classifier and the CNN performed best at classifying season 1 and season 7. However, there may be other reasons, e.g. disbalanced data for these results. 
 
-Logistic Regression             | Retrained Embeddings
+Logistic Regression             | CNN
 :-------------------------:|:-------------------------:
 ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_matrix.png)  |  ![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_matrix.png)
 
 Looking closer at the training history of CNN, it can be seen that despite regularisation and drop-out layers the model started overfitting at around epoch 10. This is indicated by the fact that the validation loss is diverging, meaning it increases, while the training loss continues to decrease. 
 
-<img src="https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png" width="350">
+<p align="center">
+  <img width="350" src="https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png">
+</p>
 
 Overall, it seems like this data may have been too complex to classify using word embeddings. Other approaches, e.g. using NER may be more useful to classify seasons, as they may be a simpler indicator of which season lines belong to. 
 
