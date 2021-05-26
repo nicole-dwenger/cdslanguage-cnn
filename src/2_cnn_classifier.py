@@ -4,17 +4,13 @@
 CNN classification of preprocessed GoT data, which has sentences chunked into 10 sentences, 
 using pretrained GloVe embeddings, which can be used as pretrained, or be re-trained on the data
 
-Required input:
-  - -o, --output_name: str, name of output directory to save all model outputs in
-
 Optional input:
   - -i, --input_file: str, default: "../out/0_preprocessing/GoT_preprocessed_10.csv", input csv with "season" and "text"
   - -e, --epochs: int, default: 20, number of epochs to train the model
   - -b, --batch_size: int, default: 20, size of batches to train model on 
   - -ed, --embedding_dim: int, default: 100, embedding dimension, either 50,100,200,300
-  - -et, --embedding_trainable, default: False, just use -et to make it True, whether pretrained embedding should be re-trained
 
-Output saved in out/2_cnn_classifier/{output_name}:
+Output saved in out/2_cnn_classifier/:
 - cnn_summary.txt: model summary of cnn model
 - cnn_model.png: visualisation of the model architecture
 - cnn_history.png: history plot of the cnn model
@@ -28,6 +24,9 @@ Output saved in out/2_cnn_classifier/{output_name}:
 import os
 import argparse
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Utils
 import sys
@@ -36,9 +35,8 @@ from utils.clf_utils import (get_train_test, binarize_labels, create_embedding_m
                              tokenize_texts, pad_texts, int_to_labels, classification_matrix,
                              save_model_info, save_model_history, save_model_report, save_model_matrix)
 
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+
+# ML tools
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
 
@@ -60,13 +58,6 @@ def main():
     # Initialise argument parser
     ap = argparse.ArgumentParser()
     
-    
-    # Required inputs
-    # Input option for output directory name
-    ap.add_argument("-o", "--out_name", type=str, help="Number of output directoy, will be created in out/",
-                    required=True)
-    
-    # Optional inputs
     # Input option for number of epochs
     ap.add_argument("-i", "--input_file", type=str, help="Path to input data file, csv with columns 'season' and 'text'", 
                     required=False, default="../out/0_preprocessing/GoT_preprocessed_10.csv")
@@ -82,10 +73,6 @@ def main():
     # Input option for embedding dimensions
     ap.add_argument("-ed", "--embedding_dim", type=int, help="Size of embedding dimension",
                      required=False, default=100)
-    
-    # Input option for whether embedding weights should be trainable
-    ap.add_argument("-et", "--embedding_trainable", action='store_true', help="Should embedding be trainable",
-                    required=False, default=False)
 
     # Retrieve input arguments
     args = vars(ap.parse_args())
@@ -93,8 +80,6 @@ def main():
     epochs = args["epochs"]
     batch_size = args["batch_size"]
     embedding_dim = args["embedding_dim"]
-    embeddings_trainable = args["embeddings_trainable"]
-    out_name = args["out_name"]
     
     # --- PREPARE DATA ---
     
@@ -128,7 +113,7 @@ def main():
     
     # Add embedding layer
     model.add(Embedding(vocab_size, embedding_dim, weights=[embedding_matrix], 
-                        input_length=max_len, trainable=embeddings_trainable))
+                        input_length=max_len, trainable=True))
     
     # Add convolutional layer
     model.add(Conv1D(128, 5, activation='relu', kernel_regularizer=L2(0.001)))
@@ -160,8 +145,9 @@ def main():
                                    predictions.argmax(axis=1),
                                    target_names = label_names)
                               
-    # Get classification matrix
-    labels_true, labels_pred = int_to_labels(y_test_binary, predictions, label_names)     
+    # Turn binarised labels into true labels
+    labels_true, labels_pred = int_to_labels(y_test_binary, predictions, label_names)  
+    # Get classifiction matrix
     matrix = classification_matrix(labels_true, labels_pred)
     
     # --- OUTPUT ---
@@ -171,7 +157,7 @@ def main():
     print(report)
     
     # Prepare output directory
-    out_directory = os.path.join("..", "out", "2_cnn_classifier", out_name)
+    out_directory = os.path.join("..", "out", "2_cnn_classifier")
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
     

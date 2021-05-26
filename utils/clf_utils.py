@@ -317,4 +317,5 @@ def save_model_matrix(matrix, output_directory, filename):
     out_matrix = unique_path(os.path.join(output_directory, filename))
     matrix.savefig(out_matrix)
     
-    
+if __name__=="__main__":
+    pass  
