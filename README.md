@@ -5,12 +5,12 @@
 ## Description
 > This is related to Assignment 6: Text Classification using Deep Learning of the course Language Analytics. 
 
-This project aimed to investigate whether lines of Games of Thrones can be classified by the season they belong to. For this classification task two models were trained and evaluated: (1) a baseline model using count-vectorisation and a logistic regression classifier and (2) a deep learning model using pre-trained GloVe word embeddings and a convolutional neural network classifier. This repository contains three scripts: (0) for preprocessing of the lines of Games of Thrones, including chunking sentences, (1) to train and evaluate logistic regression classifier using count-vectorisation and (2) to train and evaluate a CNN using pre-trained GloVe embeddings.
+This project aimed to investigate whether lines of Game of Thrones can be classified by the season they belong to. For this classification task two models were trained and evaluated: (1) a baseline model using count-vectorisation and a logistic regression classifier and (2) a deep learning model using pre-trained GloVe word embeddings and a convolutional neural network classifier. This repository contains three scripts: (0) for preprocessing of the lines of Game of Thrones, including chunking sentences, (1) to train and evaluate logistic regression classifier using count-vectorisation and (2) to train and evaluate a CNN using pre-trained GloVe embeddings.
 
 ## Methods 
 
 ### Data and Preprocessing 
-For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons), containing lines of Games of Thrones and the season they belong to. As the lines varied in their length, the following steps were taken with the aim of cleaning the data and creating more balanced text documents: 
+For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons), containing lines of Game of Thrones and the season they belong to. As the lines varied in their length, the following steps were taken with the aim of cleaning the data and creating more balanced text documents: 
 
 1. Rows in which the text was not a true line, but contained the word SEASON,  EPISODE or CREDITS were removed. 
 2. The lines in the data frame still consisted of multiple sentences. Thus, all lines were split into single sentences, while keeping the information about the season. 
@@ -78,7 +78,7 @@ source venv_cnn/bin/activate
 ```
 
 ### 2. Data and Pretrained Embeddings
-The Games of Thrones data, which was downloaded from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons) is stored in the `data/` directory of this repository. However, to run the CNN, it is necessary to download the pretrained GloVe word embeddings. This should be done in the `data/glove/` directory (which is already prepared, but empty). After following the steps below, you should have four .txt files in the `data/glove/` directory: 
+The Game of Thrones data, which was downloaded from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons) is stored in the `data/` directory of this repository. However, to run the CNN, it is necessary to download the pretrained GloVe word embeddings. This should be done in the `data/glove/` directory (which is already prepared, but empty). After following the steps below, you should have four .txt files in the `data/glove/` directory: 
 
 ```bash
 # move into glove directory
