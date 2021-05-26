@@ -188,9 +188,9 @@ __Output__ saved in `out/2_cnn_classifier/`:
 
 
 ## Results and Discussion 
-All results can be found in the `out/` directory of this repository. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_metrics.txt) of the logistic regression classifier indicated, that the model achieved a weighted F1 score of 0.35. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/trained_100_e20/cnn_metrics.txt) of the CNN indicated a weighted F1 score of 0.31. Thus, only considering the F1 score, the CNN could not really outperform the base line, logistic regression classifier. 
+All results can be found in the `out/` directory of this repository. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/1_lr_classifier/lr_metrics.txt) of the logistic regression classifier indicated, that the model achieved a weighted F1 score of 0.35. The [classification report](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_metrics.txt) of the CNN indicated a weighted F1 score of 0.31. Thus, only considering the F1 score, the CNN could not really outperform the base line, logistic regression classifier. 
 
-The confusion matricies can be provide more detailed information into which seasons where mixed up or more difficult to classifiy. Both the logistic regression classifier and the CNN performed best at classifying season 1, season 2 and season 7. However, there may be other reasons, e.g. disbalanced data for these results. 
+The confusion matricies can be provide more detailed information into which seasons where mixed up or more difficult to classifiy. Both the logistic regression classifier and the CNN performed best at classifying season 1 and season 7. However, there may be other reasons, e.g. disbalanced data for these results. 
 
 Logistic Regression             | Retrained Embeddings
 :-------------------------:|:-------------------------:
@@ -198,7 +198,7 @@ Logistic Regression             | Retrained Embeddings
 
 Looking closer at the training history of CNN, it can be seen that despite regularisation and drop-out layers the model started overfitting at around epoch 10. This is indicated by the fact that the validation loss is diverging, meaning it increases, while the training loss continues to decrease. 
 
-![](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png)
+<img src="https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/cnn_history.png" width="200">
 
 Overall, it seems like this data may have been too complex to classify using word embeddings. Other approaches, e.g. using NER may be more useful to classify seasons, as they may be a simpler indicator of which season lines belong to. 
 
