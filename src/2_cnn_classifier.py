@@ -2,7 +2,7 @@
 
 """
 CNN classification using pretrained GloVe embeddings, 
-on preprocessed GoT datawhich has sentences chunked into 10 sentences.
+on preprocessed GoT data, which has sentences chunked into 10 sentences.
 
 Optional input:
   - -i, --input_file: str, default: "../out/0_preprocessing/GoT_preprocessed_10.csv", input csv with "season" and "text"
