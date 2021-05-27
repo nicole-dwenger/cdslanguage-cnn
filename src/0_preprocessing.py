@@ -3,12 +3,13 @@
 """
 Script to preprocess the GoT data: 
   - Clear non-sentences,
-  - Split all texts into single sentences and chunk them into chunks of 10
+  - Split all texts into single sentences 
+  - Chunk single sentences into chunks of given chunk size
 
 Input:
-  - -c, chunk_size: int, optional, default: 10, number of sentences to be in chunk
+  - -c, --chunk_size: int, optional, default: 10, number of sentences to be in chunk
 
-Output, saved in out/:
+Output, saved in out/0_preprocessing:
   - 0_preprocessed_GoT_{chunk_size}.csv: csv file with column names "season" and "text", 
     where text contains chunks of sentences
   
