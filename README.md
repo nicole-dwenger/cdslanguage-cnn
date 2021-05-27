@@ -160,7 +160,7 @@ cd src/
 python3 2_cnn_classifier.py
 
 # run script with specified parameters
-python3 2_cnn_classifier.p -e 10
+python3 2_cnn_classifier.py -e 10
 ```
 __Parameters:__
 
