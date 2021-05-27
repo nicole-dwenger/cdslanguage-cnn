@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
 """
-Script to preprocess the GoT data: clear non-sentences,
-split all texts into single sentences and chunk them into chunks of 10
+Script to preprocess the GoT data: 
+  - Clear non-sentences,
+  - Split all texts into single sentences and chunk them into chunks of 10
 
 Input:
   - -c, chunk_size: int, optional, default: 10, number of sentences to be in chunk
 
-Output, saved in out/
-  - 0_preprocessed_GoT.csv: csv file with column names "season" and "text", 
+Output, saved in out/:
+  - 0_preprocessed_GoT_{chunk_size}.csv: csv file with column names "season" and "text", 
     where text contains chunks of sentences
   
 """
@@ -113,8 +114,8 @@ def main():
             # Append to senteces list
             sentences.extend(split)
 
-        # Chunk the single sentences into chunks of 10 
-        chunks = chunk_sentences(sentences, 10)
+        # Chunk the single sentences into chunks of chunk size
+        chunks = chunk_sentences(sentences, chunk_size)
         # For each chunk, write the season and the text into a row in the df
         for chunk in chunks:
             out_df = out_df.append({"season": season, 
@@ -128,7 +129,7 @@ def main():
         os.makedirs(out_directory)
        
     # Save output dataframe
-    out_path = os.path.join(out_directory, f"GoT_preprocessed_{chunk_size}.csv")
+    out_path = os.path.join(out_directory, f"GoT_preprocessed_{chunk_size}_test.csv")
     out_df.to_csv(out_path)
     
     # Print done message

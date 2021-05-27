@@ -97,6 +97,9 @@ def main():
     # Tokenize texts, and keeping the defined number of words
     X_train_toks, X_test_toks, vocab_size, word_index = tokenize_texts(X_train, X_test, num_words=4000)
     
+    print(len(X_train_toks))
+    print(len(X_test_toks))
+    
     # Pad texts, for all to have the same length
     X_train_pad, X_test_pad, max_len = pad_texts(X_train_toks, X_test_toks)
     

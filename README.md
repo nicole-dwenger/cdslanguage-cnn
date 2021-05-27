@@ -5,12 +5,12 @@
 ## Description
 > This is related to Assignment 6: Text Classification using Deep Learning of the course Language Analytics. 
 
-This project aimed to investigate whether lines of Game of Thrones can be classified by the season they belong to. For this classification task two models were trained and evaluated: (1) a baseline model using count-vectorisation and a logistic regression classifier and (2) a deep learning model using pre-trained GloVe word embeddings and a convolutional neural network classifier. This repository contains three scripts: (0) for preprocessing of the lines of Game of Thrones, including chunking sentences, (1) to train and evaluate logistic regression classifier using count-vectorisation and (2) to train and evaluate a CNN using pre-trained GloVe embeddings.
+This project aimed to investigate whether lines of Game of Thrones can be classified by the season they belong to. For this classification task, two models were trained and evaluated: (1) a baseline model using count-vectorisation and a logistic regression classifier and (2) a deep learning model using pre-trained GloVe embeddings and a convolutional neural network (CNN) classifier. Three scripts were developed for this project: (0) for preprocessing of the lines of Game of Thrones, including chunking sentences, (1) to train and evaluate logistic regression classifier using count-vectorisation and (2) to train and evaluate a CNN using pre-trained GloVe embeddings.
 
 ## Methods 
 
 ### Data and Preprocessing 
-For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons), containing lines of Game of Thrones and the season they belong to. As the lines varied in their length, the following steps were taken with the aim of cleaning the data and creating more balanced text documents: 
+For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons), containing lines of Game of Thrones and the season they belong to, was used. As the lines varied in their length, the following steps were taken with the aim of cleaning the data and creating more balanced text documents: 
 
 1. Rows in which the text was not a true line, but contained the word SEASON,  EPISODE or CREDITS were removed. 
 2. The lines in the data frame still consisted of multiple sentences. Thus, all lines were split into single sentences, while keeping the information about the season. 
@@ -19,11 +19,11 @@ For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thro
 For both models, the data was split into training and test data using a 75/25 split. 
 
 ### Count Vectorisazion and Logistic Regression
-Count vectorisation is a very simple way of representing text documents as vectors. For each document this vector represents how often each word of the entire vocabulary of the corpus occurs in the given document. For this project all texts were transformed into vector space, and fed into a logistic regression classifier, which was run using default parameters. The model was evaluated based on predictions on the test data. 
+Count vectorisation is a very simple way of representing text documents as vectors. For each document this vector represents how often each word of the entire vocabulary of the corpus occurs in the given document. For this project all texts were transformed into this vector space, and fed into a logistic regression classifier, which was run using default parameters. The model was evaluated based on predictions on the test data. 
 
 ### Image Embeddings and Convolutional Neural Networks
 While features extracted using count-vectorisation can inform about the words that occur in a given text, they cannot capture anything about the actual meaning of those words and the context that they appear in. Word embeddings are dense feature representations of words, which are learned based on which other words occur around a given word. For instance, if the words house and apartment always occur around words such as live and leave, these words will have similar representations. Consequently, words which are semantically similar will have similar representations. Rather than training these representations from scratch, pre-trained word embeddings, which have been learned on a large corpus of text can be used.  These word embeddings can then be fed into convolutional neural networks (CNN), which have the advantage of being able to take into account local features, i.e., smaller contexts of text. 
-For the CNN in this project, the texts were first tokenised (turned into vectors) and padded to be as long as the maximum vector. These vectors were then used to create an embedding matrix, using the pre-trained GloVe embeddings of dimension 100. This embedding matrix was used in the input, i.e. the embedding layer of the CNN. The pre-trained GloVe embedding weights were allowed to be re-trained, meaning they were set to be trainable. Following this embedding layer, was a convolutional layer (128 nodes, with relu-activation function, L2 regularisation of 0.001), a global max-pooling layer, a drop out layer (0.02), a fully connected layer (32 nodes, with relu-activation function, L2 regularisation of 0.001), another drop-out layer (0.02), and finally a layer to classify the line to belong to one of the eight seasons. The drop-out layers and regularisation methods were used to reduce overfitting of the model on the training data. For more details see the [model visualisation](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_model.png) and [model summary](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_summary.txt). The model was trained for 20 epochs using a batch size of 20 and evaluated by comparing predictions on the test data to the true labels. 
+For the CNN in this project, the texts were first tokenised (turned into vectors) and padded to be as long as the maximum vector. These vectors were then used to create an embedding matrix, using the pre-trained GloVe embeddings of dimension 100. This embedding matrix was used in the input, embedding layer of the CNN. The pre-trained GloVe embedding weights were allowed to be re-trained, meaning they were set to be trainable. Following this embedding layer, was a convolutional layer (128 nodes, with relu-activation function, L2 regularisation of 0.001), a global max-pooling layer, a drop out layer (0.02), a fully connected layer (32 nodes, with relu-activation function, L2 regularisation of 0.001), another drop-out layer (0.02), and finally a layer to classify the line to belong to one of the eight seasons. The drop-out layers and regularisation methods were used to reduce overfitting of the model on the training data. For more details see the [model visualisation](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_model.png) and [model summary](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_summary.txt). The model was trained for 20 epochs using a batch size of 20 and evaluated by comparing predictions on the test data to the true labels. 
 
 
 ## Repository Structure 
@@ -35,6 +35,7 @@ For the CNN in this project, the texts were first tokenised (turned into vectors
 |-- out/                                # Directory for output, corresponding to scripts
     |-- 0_preprocessing/                # Directory for output of script 0_preprocessing.py
         |-- GoT_preprocessed_10.csv     # Preprocessed data, with chunks of 10 sentences
+        |-- GoT_preprocessed_20.csv.    # Preprocessed data, with chunks of 20 sentences, not used in this project
     |-- 1_lr_classifier/                # Directory for output of script 1_lr_classifier.py
         |-- lr_metrics.txt              # Classification report of logistic regression classifier
         |-- lr_matrix.png               # Classification matrix of logistic regression classifier
@@ -61,8 +62,8 @@ For the CNN in this project, the texts were first tokenised (turned into vectors
 **!** The scripts have only been tested on Linux, using Python 3.6.9. 
 
 ### 1. Cloning the Repository and Installing Dependencies
-To run the scripts in this repository, I recommend cloning this repository and installing necessary dependencies in a virtual environment. The bash script `create_venv.sh` can be used to create a virtual environment called `venv_cnn` with all necessary dependencies, listed in the `requirements.txt` file. The following commands can be used:
-
+To run the scripts in this repository, I recommend cloning this repository and installing necessary dependencies in a virtual environment. The bash script `create_venv.sh` can be used to create a virtual environment called `venv_cnn` with all necessary dependencies, listed in the `requirements.txt` file. This will also load the required language model (`en_core_web_sm`, from spaCy). The following commands can be used:
+`
 ```bash
 # cloning the repository
 git clone https://github.com/nicole-dwenger/cdslanguage-cnn.git
