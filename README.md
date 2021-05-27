@@ -119,7 +119,7 @@ __Parameters:__
     
 __Output__ saved in `out/0_preprocessing/`: 
 
-- `GoT_preprocessed_{chunk_size}`\
+- `GoT_preprocessed_{chunk_size}.csv`\
    Preprocessed GoT data as .csv file with column "season" and "text". 
    
 ### 3.1. Logistic Regression Classifier: 1_lr_classifier.py
