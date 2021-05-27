@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 """
-CNN classification of preprocessed GoT data, which has sentences chunked into 10 sentences, 
-using pretrained GloVe embeddings, which can be used as pretrained, or be re-trained on the data
+CNN classification using pretrained GloVe embeddings, 
+on preprocessed GoT datawhich has sentences chunked into 10 sentences.
 
 Optional input:
   - -i, --input_file: str, default: "../out/0_preprocessing/GoT_preprocessed_10.csv", input csv with "season" and "text"
