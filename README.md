@@ -54,8 +54,8 @@ For the CNN in this project, the texts were first tokenised (turned into vectors
     |-- cnn_utils.py                    # Script with helper functions for classification scripts
    
 |-- README.md
-|-- create_venv.sh                       # Bash script to create virtual environment
-|-- requirements.txt                     # Dependencies, installed in virtual environment
+|-- create_venv.sh                      # Bash script to create virtual environment
+|-- requirements.txt                    # Dependencies, installed in virtual environment
 
 ```
 
