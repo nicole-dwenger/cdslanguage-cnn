@@ -34,8 +34,7 @@ For the CNN in this project, the texts were first tokenised (turned into vectors
     
 |-- out/                                # Directory for output, corresponding to scripts
     |-- 0_preprocessing/                # Directory for output of script 0_preprocessing.py
-        |-- GoT_preprocessed_10.csv     # Preprocessed data, with chunks of 10 sentences
-        |-- GoT_preprocessed_20.csv.    # Preprocessed data, with chunks of 20 sentences, not used in this project
+        |-- GoT_preprocessed_10.csv     # Preprocessed data, with chunks of 10 sentences    
     |-- 1_lr_classifier/                # Directory for output of script 1_lr_classifier.py
         |-- lr_metrics.txt              # Classification report of logistic regression classifier
         |-- lr_matrix.png               # Classification matrix of logistic regression classifier
