@@ -1,4 +1,4 @@
-# Classifying Game of Thrones Lines using Deep Learning
+# Deep Learning: Classification of Game of Thrones Lines 
 
 [Description](#description) | [Methods](#methods) | [Repository Structure](#repository-structure) | [Usage](#usage) | [Results and Disucssion](#results-and-discussion) | [Contact](#contact)
 
@@ -21,7 +21,7 @@ For both models, the data was split into training and test data using a 75/25 sp
 ### Count Vectorisazion and Logistic Regression
 Count vectorisation is a very simple way of representing text documents as vectors. For each document this vector represents how often each word of the entire vocabulary of the corpus occurs in the given document. For this project all texts were transformed into this vector space, and fed into a logistic regression classifier, which was run using default parameters. The model was evaluated based on predictions on the test data. 
 
-### Image Embeddings and Convolutional Neural Networks
+### Word Embeddings and Convolutional Neural Networks
 While features extracted using count-vectorisation can inform about the words that occur in a given text, they cannot capture anything about the actual meaning of those words and the context that they appear in. Word embeddings are dense feature representations of words, which are learned based on which other words occur around a given word. For instance, if the words house and apartment always occur around words such as live and leave, these words will have similar representations. Consequently, words which are semantically similar will have similar representations. Rather than training these representations from scratch, pre-trained word embeddings, which have been learned on a large corpus of text can be used.  These word embeddings can then be fed into convolutional neural networks (CNN), which have the advantage of being able to take into account local features, i.e., smaller contexts of text. 
 For the CNN in this project, the texts were first tokenised (turned into vectors), and padded to be as long as the maximum vector. These vectors were then used to create an embedding matrix, using the pre-trained GloVe embeddings of dimension 100. This embedding matrix was used in the input, embedding layer of the CNN. The pre-trained GloVe embedding weights were allowed to be re-trained, meaning they were set to be trainable. Following this embedding layer, was a convolutional layer (128 nodes, with relu-activation function, L2 regularisation of 0.001), a global max-pooling layer, a drop out layer (0.02), a fully connected layer (32 nodes, with relu-activation function, L2 regularisation of 0.001), another drop-out layer (0.02), and finally a layer to classify the line to belong to one of the eight seasons. The drop-out layers and regularisation methods were used to reduce overfitting of the model on the training data. For more details see the [model visualisation](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_model.png) and [model summary](https://github.com/nicole-dwenger/cdslanguage-cnn/blob/master/out/2_cnn_classifier/pretrained_100_e20/cnn_summary.txt). The model was trained for 20 epochs using a batch size of 20 and evaluated by comparing predictions on the test data to the true labels. 
 
@@ -96,7 +96,7 @@ unzip unzip -q glove.6B.zip
 cd ../../
 ```
 
-### 3. Scripts
+### 3. Running the Scripts
 This repository contains three scripts: `0_preprocessing.py`, `1_lr_classifier.py` and `2_cnn_classifier.py`. Note that to run the scripts `1_lr_classifier.py` and `2_cnn_classifier.py` it is necessary to first preprocess the raw data using `0_preprocessing.py`. Detailed descriptions of how to run each of the scripts are outlined below. 
 
 ### 3.0. Preprocessing of GoT Data: 0_preprocessing.py
@@ -149,7 +149,7 @@ __Output__ saved in `out/1_lr_classifier/`:
    Classification/confusion matrix of logistic regression classifier. Filename is enumerated if it exists already.
    
    
-### 3.2. CNN Classifier: 2_cnn_classifier.py
+### 3.2. CNN Classifier using Word Embeddings: 2_cnn_classifier.py
 The script `2_cnn_classifier.py` trains and evaluates a CNN using pre-trained GloVe word embeddings. The script should be called from the `src/` directory:
 
 ```bash
