@@ -49,8 +49,10 @@ For the CNN in this project, the texts were first tokenised (turned into vectors
     |-- 0_preprocessing.py              # Script for preprocessing raw data
     |-- 1_lr_classifier.py              # Script for logistic regression classifier
     |-- 2_cnn_classifier.py             # Script for CNN classifier with word embeddings
+
+|-- utils/                              # Directory containing utility script 
+    |-- cnn_utils.py                    # Script with helper functions for classification scripts
    
-    
 |-- README.md
 |-- create_venv.sh                       # Bash script to create virtual environment
 |-- requirements.txt                     # Dependencies, installed in virtual environment

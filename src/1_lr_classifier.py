@@ -28,7 +28,7 @@ import argparse
 # Utils
 import sys
 sys.path.append(os.path.join(".."))
-from utils.clf_utils import classification_matrix, save_model_report, save_model_matrix
+from utils.cnn_utils import classification_matrix, save_model_report, save_model_matrix
 
 # Data and Visualisation
 import pandas as pd

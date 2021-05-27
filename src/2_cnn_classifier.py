@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 # Utils
 import sys
 sys.path.append(os.path.join(".."))
-from utils.clf_utils import (get_train_test, binarize_labels, create_embedding_matrix,
+from utils.cnn_utils import (get_train_test, binarize_labels, create_embedding_matrix,
                              tokenize_texts, pad_texts, int_to_labels, classification_matrix,
                              save_model_info, save_model_history, save_model_report, save_model_matrix)
 
