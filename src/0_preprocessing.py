@@ -12,7 +12,6 @@ Input:
 Output, saved in out/0_preprocessing:
   - 0_preprocessed_GoT_{chunk_size}.csv: csv file with column names "season" and "text", 
     where text contains chunks of sentences
-  
 """
 
 # LIBRARIES ------------------------------------
