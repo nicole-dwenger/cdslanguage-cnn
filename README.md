@@ -12,7 +12,7 @@ This project aimed to investigate whether lines of Game of Thrones can be classi
 ### Data and Preprocessing 
 For this project, data from [Kaggle](https://www.kaggle.com/albenft/game-of-thrones-script-all-seasons), containing lines of Game of Thrones and the season they belong to, was used. As the lines varied in their length, the following steps were taken with the aim of cleaning the data and creating more balanced text documents: 
 
-1. Rows in which the text was not a true line, but contained the word SEASON,  EPISODE or CREDITS were removed. 
+1. Rows in which the text was not a true line, but contained the word COLD OPEN, SEASON,  EPISODE or CREDITS were removed. 
 2. The lines in the data frame still consisted of multiple sentences. Thus, all lines were split into single sentences, while keeping the information about the season. 
 4. The single sentences were chunked into chunks of 10 sentences and stored together with their season in a data frame with columns for season and text.
 

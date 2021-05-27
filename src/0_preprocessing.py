@@ -129,7 +129,7 @@ def main():
         os.makedirs(out_directory)
        
     # Save output dataframe
-    out_path = os.path.join(out_directory, f"GoT_preprocessed_{chunk_size}_test.csv")
+    out_path = os.path.join(out_directory, f"GoT_preprocessed_{chunk_size}.csv")
     out_df.to_csv(out_path)
     
     # Print done message
